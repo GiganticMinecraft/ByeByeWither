@@ -8,7 +8,6 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.event.HandlerList;
 import org.bukkit.plugin.java.JavaPlugin;
-import org.jetbrains.annotations.NotNull;
 
 import java.util.HashSet;
 
@@ -35,7 +34,7 @@ public class ByeByeWither extends JavaPlugin {
     }
 
     @Override
-    public boolean onCommand(@NotNull CommandSender sender, @NotNull Command cmd, @NotNull String label, String[] args) {
+    public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
         if (args.length == 0 || !args[0].equalsIgnoreCase("reload")) {
             sender.sendMessage(ChatColor.GREEN + "=========" + ChatColor.WHITE + " BeyBeyWither " + ChatColor.GREEN + "=========");
             sender.sendMessage("Developer: HimaJyun( https://jyn.jp/ ) and GiganticMinecraft ( https://www.seichi.network/ )");
