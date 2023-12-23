@@ -3,12 +3,14 @@ package jp.jyn.byebyewither.listeners;
 import org.bukkit.Material;
 import org.bukkit.World;
 import org.bukkit.World.Environment;
+import org.bukkit.block.Block;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
 import org.bukkit.event.player.PlayerInteractEvent;
 
+import java.util.Optional;
 import java.util.Set;
 
 @SuppressWarnings("unused")
@@ -29,7 +31,8 @@ public class EnderDragon implements Listener {
         if (e.getMaterial() != Material.END_CRYSTAL) {
             return;
         }
-        if (e.getClickedBlock().getType() != Material.BEDROCK) {
+        Optional<Material> clickedBlockMaterial = Optional.ofNullable(e.getClickedBlock()).map(Block::getType);
+        if (clickedBlockMaterial.filter(material -> material == Material.BEDROCK).isEmpty()) {
             return;
         }
 
@@ -44,6 +47,7 @@ public class EnderDragon implements Listener {
         if (player.hasPermission("byebyewither.allowdragon")) {
             return;
         }
+
         e.setCancelled(true);
     }
 }

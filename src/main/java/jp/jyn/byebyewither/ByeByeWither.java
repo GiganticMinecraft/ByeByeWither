@@ -38,7 +38,7 @@ public class ByeByeWither extends JavaPlugin {
     public boolean onCommand(@NotNull CommandSender sender, @NotNull Command cmd, @NotNull String label, String[] args) {
         if (args.length == 0 || !args[0].equalsIgnoreCase("reload")) {
             sender.sendMessage(ChatColor.GREEN + "=========" + ChatColor.WHITE + " BeyBeyWither " + ChatColor.GREEN + "=========");
-            sender.sendMessage("Developer: HimaJyun( https://jyn.jp/ )");
+            sender.sendMessage("Developer: HimaJyun( https://jyn.jp/ ) and GiganticMinecraft ( https://www.seichi.network/ )");
             sender.sendMessage("/byebyewither reload - Reload config.");
             return true;
         }
@@ -51,6 +51,7 @@ public class ByeByeWither extends JavaPlugin {
         onDisable();
         onEnable();
         sender.sendMessage("[ByeByeWither] Config reloaded.");
+
         return true;
     }
 }

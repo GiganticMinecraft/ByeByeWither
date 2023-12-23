@@ -1,10 +1,13 @@
 package jp.jyn.byebyewither.listeners;
 
+import org.bukkit.World;
 import org.bukkit.entity.EntityType;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.CreatureSpawnEvent;
+import org.bukkit.generator.WorldInfo;
 
+import java.util.Optional;
 import java.util.Set;
 
 @SuppressWarnings("unused")
@@ -22,9 +25,11 @@ public class Wither implements Listener {
         if (e.getEntityType() != EntityType.WITHER) {
             return;
         }
-        if (worlds.contains(e.getLocation().getWorld().getName())) {
+        Optional<String> worldName = Optional.ofNullable(e.getLocation().getWorld()).map(WorldInfo::getName);
+        if (worldName.isEmpty() || !worlds.contains(worldName.get())) {
             return;
         }
+
         e.setCancelled(true);
     }
 }
