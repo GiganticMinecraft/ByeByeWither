@@ -11,9 +11,9 @@ commands:
 
 permissions:
     byebyewither.*:
-        byebyewither.allowdragon: true
+        byebyewither.bypass-dragon: true
         byebyewither.reload: true
-    byebyewither.allowdragon:
+    byebyewither.bypass-dragon:
         default: op
     byebyewither.reload:
         default: op

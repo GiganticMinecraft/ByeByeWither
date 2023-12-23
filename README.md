@@ -11,5 +11,5 @@
 |コマンド|パーミッション|説明|デフォルト|
 |---|---|---|---|
 |/bbw reload|byebyewither.reload|設定ファイルをリロードします。|OP|
-|-|byebyewither.allowdragon|設定に関わらずエンドラを召喚出来ます。|OP|
+|-|byebyewither.bypass-dragon|設定に関わらずエンドラを召喚出来ます。|OP|
 |-|byebyewither.*|上記全ての権限を含みます。|なし|

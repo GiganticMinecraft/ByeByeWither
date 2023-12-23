@@ -44,7 +44,7 @@ public class EnderDragon implements Listener {
         if (ignoredWorlds.contains(world.getName())) {
             return;
         }
-        if (player.hasPermission("byebyewither.allowdragon")) {
+        if (player.hasPermission("byebyewither.bypass-dragon")) {
             return;
         }
 
