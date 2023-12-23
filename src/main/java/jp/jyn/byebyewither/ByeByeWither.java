@@ -19,12 +19,12 @@ public class ByeByeWither extends JavaPlugin {
 
         FileConfiguration conf = getConfig();
 
-        if (conf.getBoolean("Wither.Enable", false)) {
-            getServer().getPluginManager().registerEvents(new Wither(new HashSet<>(conf.getStringList("Wither.Allow"))), this);
+        if (conf.getBoolean("wither.is-enabled", false)) {
+            getServer().getPluginManager().registerEvents(new Wither(new HashSet<>(conf.getStringList("wither.ignored-worlds"))), this);
         }
 
-        if (conf.getBoolean("EnderDragon.Enable", false)) {
-            getServer().getPluginManager().registerEvents(new EnderDragon(new HashSet<>(conf.getStringList("EnderDragon.Allow"))), this);
+        if (conf.getBoolean("ender-dragon.is-enabled", false)) {
+            getServer().getPluginManager().registerEvents(new EnderDragon(new HashSet<>(conf.getStringList("ender-dragon.ignored-worlds"))), this);
         }
     }
 

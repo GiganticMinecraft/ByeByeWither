@@ -1,6 +1,5 @@
 package jp.jyn.byebyewither.listeners;
 
-import org.bukkit.World;
 import org.bukkit.entity.EntityType;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -14,10 +13,10 @@ import java.util.Set;
 public class Wither implements Listener {
 
     // allowed worlds
-    private final Set<String> worlds;
+    private final Set<String> ignoredWorlds;
 
-    public Wither(Set<String> worlds) {
-        this.worlds = worlds;
+    public Wither(Set<String> ignoredWorlds) {
+        this.ignoredWorlds = ignoredWorlds;
     }
 
     @EventHandler
@@ -26,7 +25,7 @@ public class Wither implements Listener {
             return;
         }
         Optional<String> worldName = Optional.ofNullable(e.getLocation().getWorld()).map(WorldInfo::getName);
-        if (worldName.isEmpty() || !worlds.contains(worldName.get())) {
+        if (worldName.isEmpty() || !ignoredWorlds.contains(worldName.get())) {
             return;
         }
 

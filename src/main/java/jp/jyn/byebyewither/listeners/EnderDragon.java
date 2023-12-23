@@ -17,10 +17,10 @@ import java.util.Set;
 public class EnderDragon implements Listener {
 
     // allowed worlds
-    private final Set<String> worlds;
+    private final Set<String> ignoredWorlds;
 
-    public EnderDragon(Set<String> worlds) {
-        this.worlds = worlds;
+    public EnderDragon(Set<String> ignoredWorlds) {
+        this.ignoredWorlds = ignoredWorlds;
     }
 
     @EventHandler
@@ -41,7 +41,7 @@ public class EnderDragon implements Listener {
         if (world.getEnvironment() != Environment.THE_END) {
             return;
         }
-        if (worlds.contains(world.getName())) {
+        if (ignoredWorlds.contains(world.getName())) {
             return;
         }
         if (player.hasPermission("byebyewither.allowdragon")) {

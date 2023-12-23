@@ -1,9 +1,9 @@
-Wither:
-    Enable: true
-    Allow:
+wither:
+    is-enabled: true
+    ignored-worlds:
         - world_nether
         - world_the_end
-EnderDragon:
-    Enable: true
-    Allow:
+ender-dragon:
+    is-enabled: true
+    ignored-worlds:
         - world_the_end
