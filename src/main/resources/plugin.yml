@@ -3,7 +3,7 @@ name: "ByeByeWither"
 version: "${project.version}"
 website: "${project.url}"
 author: "HimaJyun( https://jyn.jp/ )"
-api-version: 1.13
+api-version: 1.18
 
 commands:
     byebyewither:
