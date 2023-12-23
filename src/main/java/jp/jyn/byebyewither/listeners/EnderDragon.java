@@ -24,7 +24,7 @@ public class EnderDragon implements Listener {
     }
 
     @EventHandler
-    public void BlockPlace(PlayerInteractEvent e) {
+    public void onEndCrystalPlace(PlayerInteractEvent e) {
         if (e.getAction() != Action.RIGHT_CLICK_BLOCK) {
             return;
         }
