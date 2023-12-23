@@ -4,17 +4,19 @@ import org.bukkit.entity.EntityType;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.CreatureSpawnEvent;
+import org.bukkit.generator.WorldInfo;
 
+import java.util.Optional;
 import java.util.Set;
 
 @SuppressWarnings("unused")
 public class Wither implements Listener {
 
     // allowed worlds
-    private final Set<String> worlds;
+    private final Set<String> ignoredWorlds;
 
-    public Wither(Set<String> worlds) {
-        this.worlds = worlds;
+    public Wither(Set<String> ignoredWorlds) {
+        this.ignoredWorlds = ignoredWorlds;
     }
 
     @EventHandler
@@ -22,9 +24,11 @@ public class Wither implements Listener {
         if (e.getEntityType() != EntityType.WITHER) {
             return;
         }
-        if (worlds.contains(e.getLocation().getWorld().getName())) {
+        Optional<String> worldName = Optional.ofNullable(e.getLocation().getWorld()).map(WorldInfo::getName);
+        if (worldName.isEmpty() || ignoredWorlds.contains(worldName.get())) {
             return;
         }
+
         e.setCancelled(true);
     }
 }

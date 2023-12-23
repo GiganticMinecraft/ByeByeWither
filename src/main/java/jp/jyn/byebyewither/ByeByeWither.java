@@ -19,12 +19,12 @@ public class ByeByeWither extends JavaPlugin {
 
         FileConfiguration conf = getConfig();
 
-        if (conf.getBoolean("Wither.Enable", false)) {
-            getServer().getPluginManager().registerEvents(new Wither(new HashSet<>(conf.getStringList("Wither.Allow"))), this);
+        if (conf.getBoolean("wither.is-enabled", false)) {
+            getServer().getPluginManager().registerEvents(new Wither(new HashSet<>(conf.getStringList("wither.ignored-worlds"))), this);
         }
 
-        if (conf.getBoolean("EnderDragon.Enable", false)) {
-            getServer().getPluginManager().registerEvents(new EnderDragon(new HashSet<>(conf.getStringList("EnderDragon.Allow"))), this);
+        if (conf.getBoolean("ender-dragon.is-enabled", false)) {
+            getServer().getPluginManager().registerEvents(new EnderDragon(new HashSet<>(conf.getStringList("ender-dragon.ignored-worlds"))), this);
         }
     }
 
@@ -37,7 +37,7 @@ public class ByeByeWither extends JavaPlugin {
     public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
         if (args.length == 0 || !args[0].equalsIgnoreCase("reload")) {
             sender.sendMessage(ChatColor.GREEN + "=========" + ChatColor.WHITE + " BeyBeyWither " + ChatColor.GREEN + "=========");
-            sender.sendMessage("Developer: HimaJyun( https://jyn.jp/ )");
+            sender.sendMessage("Developer: HimaJyun( https://jyn.jp/ ) and GiganticMinecraft ( https://www.seichi.network/ )");
             sender.sendMessage("/byebyewither reload - Reload config.");
             return true;
         }
@@ -50,6 +50,7 @@ public class ByeByeWither extends JavaPlugin {
         onDisable();
         onEnable();
         sender.sendMessage("[ByeByeWither] Config reloaded.");
+
         return true;
     }
 }

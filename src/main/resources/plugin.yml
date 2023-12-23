@@ -1,8 +1,7 @@
-main: "jp.jyn.byebyewither.ByeByeWither"
 name: "ByeByeWither"
-version: "${project.version}"
-website: "${project.url}"
-author: "HimaJyun( https://jyn.jp/ )"
+version: @version@
+main: "jp.jyn.byebyewither.ByeByeWither"
+author: "HimaJyun( https://jyn.jp/ ) and GiganticMinecraft ( https://www.seichi.network/ )"
 api-version: 1.18
 
 commands:
@@ -12,9 +11,9 @@ commands:
 
 permissions:
     byebyewither.*:
-        byebyewither.allowdragon: true
+        byebyewither.bypass-dragon: true
         byebyewither.reload: true
-    byebyewither.allowdragon:
+    byebyewither.bypass-dragon:
         default: op
     byebyewither.reload:
         default: op
