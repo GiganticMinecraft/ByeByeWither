@@ -1,3 +1,15 @@
 # ByeByeWither
-Bukkit/Spigot用、ウィザー及びエンダードラゴンの召喚抑制  
-詳細に関しては「[僕のブログ](https://jyn.jp/bukkit_byebyewither/)」をご覧下さい。
+
+このリポジトリは、[HimaJyun/ByeByeWither](https://github.com/HimaJyun/ByeByeWither)のフォークです。
+
+## 説明
+
+* ウィザーとエンダードラゴンの召喚、エンドクリスタルの召喚を拒否するBukkit/Spigotプラグイン
+
+## コマンド・パーミッション
+
+|コマンド|パーミッション|説明|デフォルト|
+|---|---|---|---|
+|/bbw reload|byebyewither.reload|設定ファイルをリロードします。|OP|
+|-|byebyewither.allowdragon|設定に関わらずエンドラを召喚出来ます。|OP|
+|-|byebyewither.*|上記全ての権限を含みます。|なし|
