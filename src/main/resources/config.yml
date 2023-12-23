@@ -3,7 +3,6 @@ Wither:
     Allow:
         - world_nether
         - world_the_end
-
 EnderDragon:
     Enable: true
     Allow:
