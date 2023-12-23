@@ -25,7 +25,7 @@ public class Wither implements Listener {
             return;
         }
         Optional<String> worldName = Optional.ofNullable(e.getLocation().getWorld()).map(WorldInfo::getName);
-        if (worldName.isEmpty() || !ignoredWorlds.contains(worldName.get())) {
+        if (worldName.isEmpty() || ignoredWorlds.contains(worldName.get())) {
             return;
         }
 
