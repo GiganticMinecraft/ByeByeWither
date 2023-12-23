@@ -1,0 +1,72 @@
+name: CI and CD
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+jobs:
+  ci:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Setup Java
+        uses: actions/setup-java@v3
+        with:
+          distribution: temurin
+          java-version: 17
+      - name: Setup Gradle
+        uses: gradle/gradle-build-action@v2
+      - name: Build
+        uses: gradle/gradle-build-action@v2
+        with:
+          arguments: jar
+      - name: Upload jar
+        uses: actions/upload-artifact@v3
+        with:
+          name: jar
+          path: ./build/libs/*.jar
+  output-sha:
+    name: 最終コミットのSHA値を取得する
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/main'
+    outputs:
+      sha: ${{ steps.output-sha.outputs.sha }}
+    steps:
+      - uses: actions/checkout@v4
+      - name: Outputs the value
+        id: output-sha
+        run: |
+          VALUE=$(git log --format='%h' -n 1)
+          echo "sha=$VALUE" >> $GITHUB_OUTPUT
+        shell: bash
+  cd:
+    runs-on: ubuntu-latest
+    needs:
+      - ci
+      - output-sha
+    if: github.ref == 'refs/heads/main'
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      - name: Create and push a tag
+        id: tag-name
+        run: |
+          TAG_NAME=sha-${{ needs.output-sha.outputs.sha }}
+          git tag $TAG_NAME
+          git push origin $TAG_NAME
+          echo "value=$TAG_NAME" >> $GITHUB_OUTPUT
+      - name: Download artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: jar
+      - name: Create release
+        uses: softprops/action-gh-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          files: ./ByeByeWither*.jar
+          tag_name: ${{ steps.tag-name.outputs.value }}
+          draft: false
+          prerelease: true
