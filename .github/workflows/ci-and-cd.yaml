@@ -11,20 +11,18 @@ jobs:
     name: Build
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
       - name: Setup Java
-        uses: actions/setup-java@v4
+        uses: actions/setup-java@v5
         with:
           distribution: temurin
           java-version: 17
       - name: Setup Gradle
-        uses: gradle/gradle-build-action@v2
+        uses: gradle/actions/setup-gradle@v5
       - name: Build
-        uses: gradle/gradle-build-action@v2
-        with:
-          arguments: jar
+        run: ./gradlew jar
       - name: Upload jar
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: jar
           path: ./build/libs/*.jar
@@ -35,7 +33,7 @@ jobs:
     outputs:
       sha: ${{ steps.output-sha.outputs.sha }}
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
       - name: Outputs the value
         id: output-sha
         run: |
@@ -51,7 +49,7 @@ jobs:
     if: github.ref == 'refs/heads/main'
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
       - name: Create and push a tag
         id: tag-name
         run: |
@@ -60,11 +58,11 @@ jobs:
           git push origin $TAG_NAME
           echo "value=$TAG_NAME" >> $GITHUB_OUTPUT
       - name: Download artifact
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@v8
         with:
           name: jar
       - name: Create release
-        uses: softprops/action-gh-release@v1
+        uses: softprops/action-gh-release@v2
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
