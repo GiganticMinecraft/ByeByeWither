@@ -1,6 +1,7 @@
 package jp.jyn.byebyewither;
 
 import jp.jyn.byebyewither.listeners.EnderDragon;
+import jp.jyn.byebyewither.listeners.Phantom;
 import jp.jyn.byebyewither.listeners.Wither;
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
@@ -25,6 +26,10 @@ public class ByeByeWither extends JavaPlugin {
 
         if (conf.getBoolean("ender-dragon.is-enabled", false)) {
             getServer().getPluginManager().registerEvents(new EnderDragon(new HashSet<>(conf.getStringList("ender-dragon.ignored-worlds"))), this);
+        }
+
+        if (conf.getBoolean("phantom.is-enabled", false)) {
+            getServer().getPluginManager().registerEvents(new Phantom(new HashSet<>(conf.getStringList("phantom.ignored-worlds"))), this);
         }
     }
 

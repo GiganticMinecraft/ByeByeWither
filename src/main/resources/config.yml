@@ -7,3 +7,6 @@ ender-dragon:
     is-enabled: true
     ignored-worlds:
         - world_the_end
+phantom:
+    is-enabled: true
+    ignored-worlds: []
