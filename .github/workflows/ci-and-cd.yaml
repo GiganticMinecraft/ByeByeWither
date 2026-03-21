@@ -9,7 +9,7 @@ on:
 jobs:
   ci:
     name: Build
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     steps:
       - uses: actions/checkout@v6
       - name: Setup Java
@@ -28,7 +28,7 @@ jobs:
           path: ./build/libs/*.jar
   output-sha:
     name: 最終コミットのSHA値を取得する
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     if: github.ref == 'refs/heads/main'
     outputs:
       sha: ${{ steps.output-sha.outputs.sha }}
@@ -42,7 +42,7 @@ jobs:
         shell: bash
   cd:
     name: Release
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     needs:
       - ci
       - output-sha
